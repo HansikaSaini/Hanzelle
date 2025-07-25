@@ -9,10 +9,10 @@ import { toast } from 'react-toastify'
 import Loading from '../component/Loading'
 
 function Add() {
-  let [image1,setImage1] = useState(false)
-  let [image2,setImage2] = useState(false)
-  let [image3,setImage3] = useState(false)
-  let [image4,setImage4] = useState(false)
+  let [image1,setImage1] = useState(null)
+  let [image2,setImage2] = useState(null)
+  let [image3,setImage3] = useState(null)
+  let [image4,setImage4] = useState(null)
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [category, setCategory] = useState("Men")
@@ -40,7 +40,9 @@ function Add() {
       formData.append("image3",image3)
       formData.append("image4",image4)
 
-      let result = await axios.post(serverUrl + "/api/product/addproduct" , formData, {withCredentials:true} )
+      let result = await axios.post(serverUrl + "/api/product/addproduct" , formData, {withCredentials:true ,  headers: {
+    "Content-Type": "multipart/form-data"
+  }} );
 
       console.log(result.data)
       toast.success("ADD Product Successfully")
@@ -86,22 +88,22 @@ function Add() {
         <div className='w-[100%] h-[100%] flex items-center justify-start '>
           <label htmlFor="image1" className=' w-[65px] h-[65px] md:w-[100px] md:h-[100px] cursor-pointer hover:border-[#46d1f7]'>
             <img src={!image1 ? upload : URL.createObjectURL(image1)} alt="" className='w-[80%] h-[80%] rounded-lg shadow-2xl hover:border-[#1d1d1d] border-[2px]' />
-            <input type="file" id='image1' hidden onChange={(e)=>setImage1(e.target.files[0])} required />
+            <input type="file"   name="image1" id='image1' hidden onChange={(e)=>setImage1(e.target.files[0])}  />
 
           </label>
           <label htmlFor="image2" className=' w-[65px] h-[65px] md:w-[100px] md:h-[100px] cursor-pointer hover:border-[#46d1f7]'>
             <img src={!image2 ? upload : URL.createObjectURL(image2)} alt="" className='w-[80%] h-[80%] rounded-lg shadow-2xl hover:border-[#1d1d1d] border-[2px]' />
-            <input type="file" id='image2' hidden onChange={(e)=>setImage2(e.target.files[0])} required />
+            <input type="file"   name="image2" id='image2' hidden onChange={(e)=>setImage2(e.target.files[0])} />
 
           </label>
           <label htmlFor="image3" className=' w-[65px] h-[65px] md:w-[100px] md:h-[100px] cursor-pointer hover:border-[#46d1f7]'>
             <img src={!image3 ? upload : URL.createObjectURL(image3)} alt="" className='w-[80%] h-[80%] rounded-lg shadow-2xl hover:border-[#1d1d1d] border-[2px]' />
-            <input type="file" id='image3' hidden onChange={(e)=>setImage3(e.target.files[0])} required />
+            <input type="file"  name="image3" id='image3' hidden onChange={(e)=>setImage3(e.target.files[0])} />
 
           </label>
           <label htmlFor="image4" className=' w-[65px] h-[65px] md:w-[100px] md:h-[100px] cursor-pointer hover:border-[#46d1f7]'>
             <img src={!image4 ? upload : URL.createObjectURL(image4)} alt="" className='w-[80%] h-[80%] rounded-lg shadow-2xl hover:border-[#1d1d1d] border-[2px]' />
-            <input type="file" id='image4' hidden onChange={(e)=>setImage4(e.target.files[0])} required/>
+            <input type="file"   name="image4" id='image4' hidden onChange={(e)=>setImage4(e.target.files[0])} />
 
           </label>
          
@@ -190,3 +192,4 @@ function Add() {
 }
 
 export default Add
+

@@ -10,6 +10,8 @@ export const addProduct = async (req,res) => {
         let image2 = await uploadOnCloudinary(req.files.image2[0].path)
         let image3 = await uploadOnCloudinary(req.files.image3[0].path)
         let image4 = await uploadOnCloudinary(req.files.image4[0].path)
+        console.log("FILES RECEIVED:", req.files);
+
         
         let productData = {
             name,
@@ -32,6 +34,7 @@ export const addProduct = async (req,res) => {
         return res.status(201).json(product)
 
     } catch (error) {
+        console.error("Full Error:", error);
           console.log("AddProduct error")
     return res.status(500).json({message:`AddProduct error ${error}`})
     }

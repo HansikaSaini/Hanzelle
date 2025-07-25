@@ -25,7 +25,6 @@ let location = useLocation()
     <ToastContainer />
     {userData && <Nav/>}
       <Routes>
-
         <Route path='/login' 
         element={userData ? (<Navigate to={location.state?.from || "/"}/> ) 
         : (<Login/>)

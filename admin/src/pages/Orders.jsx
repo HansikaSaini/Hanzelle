@@ -43,7 +43,9 @@ function Orders() {
       <Nav/>
       <div className='w-[100%] h-[100%] flex items-center lg:justify-start justify-center'>
         <Sidebar/>
-        <div className='lg:w-[85%] md:w-[70%] h-[100%] lg:ml-[310px] md:ml-[250px] mt-[70px] flex flex-col gap-[30px] overflow-x-hidden py-[50px] ml-[100px]'>
+        {/* <div className='lg:w-[85%] md:w-[70%] h-[100%] lg:ml-[310px] md:ml-[250px] mt-[70px] flex flex-col gap-[30px] overflow-x-hidden py-[50px] ml-[100px]'> */}
+        <div className='ml-[20%] w-[82%] mt-[70px] flex flex-col gap-[30px] overflow-x-hidden py-[50px]'>
+
           <div className='w-[400px] h-[50px] text-[28px] md:text-[40px] mb-[20px] text-white'>All Orders List</div>
           {
            orders.map((order,index)=>(

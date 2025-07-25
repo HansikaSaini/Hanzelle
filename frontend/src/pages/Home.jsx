@@ -20,7 +20,7 @@ function Home() {
   useEffect(()=>{
     let interval = setInterval(()=>{
       setHeroCount(prevCount => (prevCount === 3 ? 0 : prevCount + 1));
-    },3000);
+    },2000);
     return () => clearInterval(interval)
   },[])
   
